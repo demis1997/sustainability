@@ -20,7 +20,7 @@ export const items = [
   },
   {
     title: 'Supply Maps',
-    path: '/customers',
+    path: '/supplyMaps',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -29,7 +29,7 @@ export const items = [
   },
   {
     title: 'Supplier List',
-    path: '/companies',
+    path: '/supplierList',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
