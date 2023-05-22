@@ -10,7 +10,7 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/customers-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
-import { GoogleMapComponent } from 'src/components/GoogleMapComponent';
+import { Loader } from "@googlemaps/js-api-loader"//Google maps intergration
 
 const now = new Date();
 
@@ -264,16 +264,8 @@ const Page = () => {
               selected={customersSelection.selected}
             />
           </Stack>
-        </Container> 
-      </Box>     
-      {/* GOOGLE FUCKING MAPS MY COCO AND BALS */}
-  <Box position='absolute' 
-  left={0}
-  top={0} 
-  h='100%'
-  w='100%'>
-    GoogleMapComponent
-  </Box>
+        </Container>
+      </Box>
     </>
   );
 };
