@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.contact {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.search-bar {
+  position: relative;
+  text-align: center;
+  margin-top: 30vh;
+}
+
+input[type="text"] {
+  width: 300%;
+  height: 60px;
+  padding: 10px;
+  font-size: 18px;
+  margin-left: -100%;
+}
+
+.suggestions {
+  position: absolute;
+  top: 58px;
+  left: 53%;
+  transform: translateX(-50%);
+  width: 300%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f4f4f4;
+}
+
+.brand-page {
+  padding: 20px;
+}
+
+.brand-page p {
+  margin-bottom: 20px;
+}
+
+.brand-title {
+  text-align: center;
+}
+
+.website-price {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.website-price .title {
+  flex-basis: 20%;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.website-price .input {
+  flex-grow: 1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+.popular-items,
+.similar-brands {
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+.popular-items .item,
+.similar-brands .brand {
+  flex-shrink: 0;
+  width: 200px;
+  margin-right: 10px;
+  text-align: center;
+  border: 1px solid darkgreen;
+  background-color: beige;
+}
+
+.popular-items .item img,
+.similar-brands .brand img {
+  width: 100%;
+  height: auto;
+}
+
+.popular-items .item-title,
+.similar-brands .brand-title {
+  text-align: center;
+}
