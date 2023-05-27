@@ -480,7 +480,7 @@ const App = () => {
       setBrandName(brand);
       setShowSuggestions(false);
     } else if (brand === "Asos") {
-      // Replace the following line with the logic to navigate to the Asos brand page in your app
+
       console.log("Navigate to Asos brand page");
     } else {
       setBrandName(brand);

@@ -8,8 +8,7 @@ const BrandPage = ({ brandName, brands, onBrandClick }) => {
   }
 
   const getFieldSummary = (field) => {
-    // Implement logic to generate the field summary
-    // This is a placeholder logic
+
     return `${field} summary`;
   };
 
