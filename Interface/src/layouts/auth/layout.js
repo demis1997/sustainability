@@ -85,7 +85,7 @@ export const Layout = (props) => {
                 sx={{ color: '#15B79E' }}
                 target="_blank"
               >
-                Devias Kit
+               Clarity
               </Box>
             </Typography>
             <Typography
@@ -93,11 +93,11 @@ export const Layout = (props) => {
               sx={{ mb: 3 }}
               variant="subtitle1"
             >
-              A professional kit that comes with ready-to-use MUI components.
+             Supply chain management like never before
             </Typography>
             <img
               alt=""
-              src="/assets/auth-illustration.svg"
+              src="/favicon-32x32.png"
             />
           </Box>
         </Grid>
