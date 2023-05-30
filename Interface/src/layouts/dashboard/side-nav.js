@@ -71,7 +71,7 @@ export const SideNav = (props) => {
                 color="inherit"
                 variant="subtitle1"
               >
-                Blockwear
+                Clarity
               </Typography>
    
             </div>
