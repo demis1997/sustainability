@@ -4,6 +4,8 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Types, AptosClient } from 'aptos';
+
 import {
   Alert,
   Box,
@@ -51,6 +53,8 @@ const Page = () => {
       }
     }
   });
+  // Create an AptosClient to interact with devnet.
+  const client = new AptosClient('https://fullnode.devnet.aptoslabs.com/v1');
 
   const handleMethodChange = useCallback(
     (event, value) => {
@@ -58,7 +62,18 @@ const Page = () => {
     },
     []
   );
+  const useWallet = async() => {
+    // connect
+    const { address, publicKey } = await window.martian.connect();
+    if (window.martian.isConnected){
+      (router.push('/'))}
+    setAddress(address);
+    setPublicKey(publicKey);
 
+  }
+
+
+  
   const handleSkip = useCallback(
     () => {
       auth.skip();
@@ -71,7 +86,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Devias Kit
+          Login | Clarity
         </title>
       </Head>
       <Box
@@ -99,68 +114,19 @@ const Page = () => {
               <Typography variant="h4">
                 Login
               </Typography>
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
-                Don&apos;t have an account?
-                &nbsp;
-                <Link
-                  component={NextLink}
-                  href="/auth/register"
-                  underline="hover"
-                  variant="subtitle2"
-                >
-                  Register
-                </Link>
-              </Typography>
+          
             </Stack>
-            <Tabs
-              onChange={handleMethodChange}
-              sx={{ mb: 3 }}
-              value={method}
-            >
-              <Tab
-                label="Email"
-                value="email"
-              />
-              <Tab
-                label="Phone Number"
-                value="phoneNumber"
-              />
-            </Tabs>
+        
             {method === 'email' && (
               <form
                 noValidate
                 onSubmit={formik.handleSubmit}
               >
                 <Stack spacing={3}>
-                  <TextField
-                    error={!!(formik.touched.email && formik.errors.email)}
-                    fullWidth
-                    helperText={formik.touched.email && formik.errors.email}
-                    label="Email Address"
-                    name="email"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="email"
-                    value={formik.values.email}
-                  />
-                  <TextField
-                    error={!!(formik.touched.password && formik.errors.password)}
-                    fullWidth
-                    helperText={formik.touched.password && formik.errors.password}
-                    label="Password"
-                    name="password"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="password"
-                    value={formik.values.password}
-                  />
+        
+       
                 </Stack>
-                <FormHelperText sx={{ mt: 1 }}>
-                  Optionally you can skip.
-                </FormHelperText>
+
                 {formik.errors.submit && (
                   <Typography
                     color="error"
@@ -174,10 +140,12 @@ const Page = () => {
                   fullWidth
                   size="large"
                   sx={{ mt: 3 }}
-                  type="submit"
-                  variant="contained"
+                  onClick={useWallet}
+                  // type="submit"
+                  // variant="contained"
+                
                 >
-                  Continue
+                 Login with Aptos
                 </Button>
                 <Button
                   fullWidth
@@ -187,30 +155,10 @@ const Page = () => {
                 >
                   Skip authentication
                 </Button>
-                <Alert
-                  color="primary"
-                  severity="info"
-                  sx={{ mt: 3 }}
-                >
-                  <div>
-                    You can use <b>demo@devias.io</b> and password <b>Password123!</b>
-                  </div>
-                </Alert>
+  
               </form>
             )}
-            {method === 'phoneNumber' && (
-              <div>
-                <Typography
-                  sx={{ mb: 1 }}
-                  variant="h6"
-                >
-                  Not available in the demo
-                </Typography>
-                <Typography color="text.secondary">
-                  To prevent unnecessary costs we disabled this feature in the demo.
-                </Typography>
-              </div>
-            )}
+
           </div>
         </Box>
       </Box>
