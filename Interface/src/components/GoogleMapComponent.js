@@ -23,6 +23,11 @@ class GoogleMapComponent extends Component {
   render() {
     const { center } = this.props;
 
+    if (!center) {
+      // If no center is provided, do not render the map
+      return null;
+    }
+    
     return (
       <LoadScript
         googleMapsApiKey="AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY"
