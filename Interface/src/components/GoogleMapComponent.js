@@ -55,11 +55,11 @@
 
 // export default React.memo(GoogleMapComponent)
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '800sx',
+  height: '500px'
 };
 
 const center = {
