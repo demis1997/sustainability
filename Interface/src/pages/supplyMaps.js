@@ -13,6 +13,12 @@ import { applyPagination } from 'src/utils/apply-pagination';
 import GoogleMapComponent from 'src/components/GoogleMapComponent';
 const now = new Date();
 
+const markers = [
+  { position: { lat: -3.745, lng: -38.523 } },
+  { position: { lat: -3.752, lng: -38.525 } },
+  // Add more marker objects as needed
+];
+
 const data = [
   {
     id: '5e887ac47eed253091be10cb',
@@ -263,7 +269,7 @@ const Page = () => {
               selected={customersSelection.selected}
             />
           </Stack>
-          <GoogleMapComponent/>
+          <GoogleMapComponent center={center} markers={markers} />
         </Container>
       </Box>
     </>

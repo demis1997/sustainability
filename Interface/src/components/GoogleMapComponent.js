@@ -63,12 +63,22 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -3.745,
+  lat: 15.745,
   lng: -38.523
 };
 
 class GoogleMapComponent extends Component {
+  renderMarkers() {
+    const { markers } = this.props;
+
+    return markers.map((marker, index) => (
+      <Marker key={index} position={marker.position} />
+    ));
+  }
+
   render() {
+    const { center } = this.props;
+
     return (
       <LoadScript
         googleMapsApiKey="AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY"
@@ -79,7 +89,7 @@ class GoogleMapComponent extends Component {
           zoom={10}
         >
           { /* Child components, such as markers, info windows, etc. */ }
-          <></>
+          {this.renderMarkers()}
         </GoogleMap>
       </LoadScript>
     )
