@@ -37,8 +37,8 @@ export const SettingsPassword = () => {
     <form onSubmit={handleSubmit}>
       <Card>
         <CardHeader
-          subheader="Update password"
-          title="Password"
+          subheader="Update Name"
+          title="Name"
         />
         <Divider />
         <CardContent>
@@ -48,11 +48,11 @@ export const SettingsPassword = () => {
           >
             <TextField
               fullWidth
-              label="Password"
-              name="password"
+              label="Name"
+              name="name"
               onChange={handleChange}
               type="password"
-              value={values.password}
+              value={values.name}
             />
             <TextField
               fullWidth

@@ -1,28 +1,89 @@
-import { useMemo } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-//import { useJsApiLoader }  from "@react-google-maps/api";
+// import { useMemo } from "react";
+// import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
+// //const {isLoaded} = useJsApiLoader({ googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,})
 
-//const {isLoaded} = useJsApiLoader({ googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,})
+// const containerStyle = {
+//   width: '400px',
+//   height: '400px'
+// };
 
-export default function Gmap() {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-  });
-  
-  if (!isLoaded) return <div>Loading...</div>;
-    return <Map />;
-  }
+// const center = {
+//   lat: -3.745,
+//   lng: -38.523
+// };
 
-  function Map() {
-    const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
-  
+// function GoogleMapComponent() {
+//   const { isLoaded } = useJsApiLoader({
+//     id: process.env.NEXT_GOOGLE_MAPS_DAY_MAP_ID,
+//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+//   })
+
+//   const [map, setMap] = React.useState(null)
+
+//   const onLoad = React.useCallback(function callback(map) {
+//     //Here we should load pins from contract maybe
+//     // This is just an example of getting and using the map instance!!! don't just blindly copy!
+//     const bounds = new window.google.maps.LatLngBounds(center);
+//     map.fitBounds(bounds);
+
+//     setMap(map)
+//   }, [])
+
+//   const onUnmount = React.useCallback(function callback(map) {
+//     setMap(null)
+//   }, [])
+
+//   return isLoaded ? (
+//       <GoogleMap
+//         mapContainerStyle={containerStyle}
+//         center={center}
+//         zoom={10}
+//         // onLoad={map => {
+//         //   const bounds = new window.google.maps.LatLngBounds();
+//         //   map.fitBounds(bounds);}
+//         // }
+//         onLoad={onload}
+//         //Not sure about this maybe we need to clear pins or do nothing
+//         onUnmount={onUnmount}
+//       >
+//         { /* Child components, such as markers, info windows, etc. */ }
+//         <></>
+//       </GoogleMap>
+//   ) : <></>
+// }
+
+// export default React.memo(GoogleMapComponent)
+import React, { Component } from 'react';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
+
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
+
+class GoogleMapComponent extends Component {
+  render() {
     return (
-      <GoogleMap zoom={10} 
-        center={center} 
-        mapContainerClassName="map-container">
-        <Marker position={center} />
-      </GoogleMap>
-    );
+      <LoadScript
+        googleMapsApiKey="AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY"
+      >
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={10}
+        >
+          { /* Child components, such as markers, info windows, etc. */ }
+          <></>
+        </GoogleMap>
+      </LoadScript>
+    )
+  }
 }
 
+export default GoogleMapComponent;

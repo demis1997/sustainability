@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
-import ClockIcon from '@heroicons/react/24/solid/ClockIcon';
 import { Avatar, Box, Card, CardContent, Divider, Stack, SvgIcon, Typography } from '@mui/material';
 
 export const CompanyCard = (props) => {
@@ -40,6 +38,15 @@ export const CompanyCard = (props) => {
         >
           {company.description}
         </Typography>
+
+        <Typography
+          align="center"
+          variant="body1"
+        >
+          {company.coordinates}
+        </Typography>
+
+        
       </CardContent>
       <Box sx={{ flexGrow: 1 }} />
       <Divider />
@@ -50,8 +57,6 @@ export const CompanyCard = (props) => {
         spacing={2}
         sx={{ p: 2 }}
       >
-       
-        
       </Stack>
     </Card>
   );

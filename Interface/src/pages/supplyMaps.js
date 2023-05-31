@@ -10,8 +10,7 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/customers-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
-import { Loader } from "@googlemaps/js-api-loader"//Google maps intergration
-
+import GoogleMapComponent from 'src/components/GoogleMapComponent';
 const now = new Date();
 
 const data = [
@@ -264,6 +263,7 @@ const Page = () => {
               selected={customersSelection.selected}
             />
           </Stack>
+          <GoogleMapComponent/>
         </Container>
       </Box>
     </>

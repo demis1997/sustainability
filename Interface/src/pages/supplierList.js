@@ -22,48 +22,50 @@ const companies = [
     createdAt: '27/03/2019',
     description: 'Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.',
     logo: '/assets/logos/logo-dropbox.png',
-    title: 'Dropbox',
-    downloads: '594'
+    title: 'Supplier from Uagnda',
+    coordinates:'40.0 -74.5',
+ 
   },
   {
     id: 'ed2b900870ceba72d203ec15',
     createdAt: '31/03/2019',
-    description: 'Medium is an online publishing platform developed by Evan Williams, and launched in August 2012.',
+    description: 'We supply Polyester',
     logo: '/assets/logos/logo-medium.png',
-    title: 'Medium Corporation',
-    downloads: '625'
+    title: 'Supplier from Cyprus',
+    coordinates:'40.0 -74.5',
+
   },
   {
     id: 'a033e38768c82fca90df3db7',
     createdAt: '03/04/2019',
-    description: 'Slack is a cloud-based set of team collaboration tools and services, founded by Stewart Butterfield.',
+    description: 'We supply Cashmere',
     logo: '/assets/logos/logo-slack.png',
-    title: 'Slack',
-    downloads: '857'
+    title: 'Supplier from Canada',
+    coordinates:'40.0 -74.5',
   },
   {
     id: '1efecb2bf6a51def9869ab0f',
     createdAt: '04/04/2019',
-    description: 'Lyft is an on-demand transportation company based in San Francisco, California.',
+    description: 'We supply leather.',
     logo: '/assets/logos/logo-lyft.png',
-    title: 'Lyft',
-    downloads: '406'
+    title: 'Supplier from Nepal',
+    coordinates:'40.0 -74.5',
   },
   {
     id: '1ed68149f65fbc6089b5fd07',
     createdAt: '04/04/2019',
-    description: 'GitHub is a web-based hosting service for version control of code using Git.',
+    description: 'We sell Cotton.',
     logo: '/assets/logos/logo-github.png',
-    title: 'GitHub',
-    downloads: '835'
+    title: 'Supplier from New Jersey',
+    coordinates:'40.0 -74.5',
   },
   {
     id: '5dab321376eff6177407e887',
     createdAt: '04/04/2019',
-    description: 'Squarespace provides software as a service for website building and hosting. Headquartered in NYC.',
+    description: 'We supply Wool',
     logo: '/assets/logos/logo-squarespace.png',
-    title: 'Squarespace',
-    downloads: '835'
+    title: 'Supplier from Italy',
+    coordinates:'41.29246 12.5736108',
   }
 ];
 
