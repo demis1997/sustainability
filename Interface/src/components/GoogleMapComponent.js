@@ -7,7 +7,7 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 15.745,
+  lat: 5.745,
   lng: -38.523
 };
 
@@ -16,12 +16,19 @@ class GoogleMapComponent extends Component {
     const { markers } = this.props;
 
     return markers.map((marker, index) => (
-      <Marker key={index} position={marker.position} />
+      <Marker key={index} 
+      position={marker.position} />
     ));
   }
 
   render() {
+    const apiKey = "AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY";
+    
     const { center } = this.props;
+    // console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
+    // console.log((process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY).toString());
+    //console.log("AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY");
+    //console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY.toString());
 
     if (!center) {
       // If no center is provided, do not render the map
@@ -30,12 +37,12 @@ class GoogleMapComponent extends Component {
     
     return (
       <LoadScript
-        googleMapsApiKey="AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY"
-      >
+      googleMapsApiKey={apiKey}
+    >
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={10}
+          zoom={5}
         >
           { /* Child components, such as markers, info windows, etc. */ }
           {this.renderMarkers()}
