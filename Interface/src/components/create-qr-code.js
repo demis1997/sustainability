@@ -1,5 +1,7 @@
 import React from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import QrcodeIcon from '@heroicons/react/24/solid/QrcodeIcon';
+import { Button, SvgIcon } from '@mui/material';
 
 export const CreateQRcodeButton = () => {
   const openQRCodeWindow = () => {
@@ -9,7 +11,17 @@ export const CreateQRcodeButton = () => {
   };
 
   return (
-    <button onClick={openQRCodeWindow}>Create QR Code</button>
+    <Button
+    startIcon={(
+      <SvgIcon fontSize="small">
+        <QrcodeIcon />
+      </SvgIcon>
+    )}
+    variant="contained"
+      onClick={openQRCodeWindow}
+    >
+      Create QR Code
+    </Button>
   );
 };
 

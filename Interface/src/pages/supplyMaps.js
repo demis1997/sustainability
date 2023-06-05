@@ -260,7 +260,7 @@ const Page = () => {
                   )}
                   variant="contained"
                 >
-                  Add
+                  Add Supplier
                 </Button>
               </div>
             </Stack>
