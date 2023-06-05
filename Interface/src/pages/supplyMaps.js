@@ -11,6 +11,8 @@ import { CustomersTable } from 'src/sections/customer/customers-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
 import GoogleMapComponent from 'src/components/GoogleMapComponent';
+import CreateQRcodeButton from 'src/components/create-qr-code';
+
 const now = new Date();
 
 //const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -212,7 +214,7 @@ const Page = () => {
         }}
       >
         <Container maxWidth="xl">
-          <Stack spacing={3}>
+          <Stack spacing={4}>
             <Stack
               direction="row"
               justifyContent="space-between"
@@ -262,7 +264,12 @@ const Page = () => {
                 </Button>
               </div>
             </Stack>
-            <CustomersSearch />
+            <Stack spacing={1} 
+            direction="row" 
+            alignItems="center">
+              <CustomersSearch /> 
+              <CreateQRcodeButton/>
+            </Stack>
             <CustomersTable
               count={data.length}
               items={customers}
