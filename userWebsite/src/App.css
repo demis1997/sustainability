@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: #FEFFD4; 
 }
 
 .app {
@@ -47,6 +48,7 @@ header {
   height: 30px;
   padding: 5px;
   font-size: 16px;
+  background-color: #D9DD83;
 }
 
 
@@ -63,7 +65,7 @@ input[type="text"] {
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
-  background-color: #fff;
+  background-color: #EBEEAB;
   border: 1px solid #ccc;
   list-style-type: none;
   padding: 0;
