@@ -36,7 +36,7 @@ const data = [
       state: '',
       street: '',
     },
-    avatar: '/assets/avatars/avatar-carson-darrin.png',
+   
     createdAt: subDays(subHours(now, 7), 1).getTime(),
     email: 'Tijuan Cotton, Charles Viscose',
     name: 'T shirt',
@@ -50,7 +50,7 @@ const data = [
       state: '',
       street: ''
     },
-    avatar: '/assets/avatars/avatar-fran-perez.png',
+  
     createdAt: subDays(subHours(now, 1), 2).getTime(),
     email: 'frank Perez Wool, Jeremiah Cotton',
     name: 'Blue Pants',
@@ -64,7 +64,7 @@ const data = [
       state: '',
       street: ''
     },
-    avatar: '/assets/avatars/avatar-jie-yan-song.png',
+
     createdAt: subDays(subHours(now, 4), 2).getTime(),
     email: 'jeans jognson, file Cashmere',
     name: 'Red Socks',
@@ -78,7 +78,7 @@ const data = [
       name: '',
       street: '',
     },
-    avatar: '/assets/avatars/avatar-anika-visser.png',
+
     createdAt: subDays(subHours(now, 11), 2).getTime(),
     email: 'anika visser cottons, Leonard Viscose',
     name: '8 pack boxers',
@@ -89,7 +89,7 @@ const data = [
     address: {
       city: 'filange.com/item238424'
     },
-    avatar: '/assets/avatars/avatar-miron-vitold.png',
+
     createdAt: subDays(subHours(now, 7), 3).getTime(),
     email: 'miron Vitae, Lomar buttons',
     name: 'Wool Coat Brown',
@@ -101,7 +101,7 @@ const data = [
       city: 'filange.com/item238424',
 
     },
-    avatar: '/assets/avatars/avatar-penjani-inyene.png',
+
     createdAt: subDays(subHours(now, 5), 4).getTime(),
     email: 'penjani.inyene@kashmeri.io',
     name: 'Penjani Cashmere',
@@ -113,7 +113,7 @@ const data = [
       city: 'filange.com/item238424',
 
     },
-    avatar: '/assets/avatars/avatar-omar-darboe.png',
+
     createdAt: subDays(subHours(now, 15), 4).getTime(),
     email: 'omar.darobe@devias.io',
     name: 'Omar Darobe',
@@ -125,7 +125,7 @@ const data = [
       city: 'filange.com/item238424',
 
     },
-    avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
+
     createdAt: subDays(subHours(now, 2), 5).getTime(),
     email: 'siegbert.gottfried@silks.io',
     name: 'Siegbert Silk',
@@ -138,7 +138,7 @@ const data = [
 
 
     },
-    avatar: '/assets/avatars/avatar-iulia-albu.png',
+  
     createdAt: subDays(subHours(now, 8), 6).getTime(),
     email: 'iulia.albu@windrose.io',
     name: 'Viscose',
@@ -150,7 +150,7 @@ const data = [
       city: 'filange.com/item238424',
 
     },
-    avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
+
     createdAt: subDays(subHours(now, 1), 9).getTime(),
     email: 'nasimiyu.danai@Cashmere.io',
     name: 'Nasimiyu Cashmere',

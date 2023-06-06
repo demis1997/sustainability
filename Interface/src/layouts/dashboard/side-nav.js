@@ -140,12 +140,10 @@ export const SideNav = (props) => {
 
           </Box>
           <Button
-            component="a"
-
+            component={NextLink}
+            href="/addMap"
             fullWidth
-            href="https://material-kit-pro-react.devias.io/"
             sx={{ mt: 2 }}
-            target="_blank"
             variant="contained"
           >
             Create a Supply Map

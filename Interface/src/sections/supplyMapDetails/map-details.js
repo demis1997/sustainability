@@ -16,20 +16,19 @@ import { companies } from '../../pages/supplierList';
 
 export const MapDetails = () => {
   const [values, setValues] = useState({
-    supplierName: '',
+    supplierName: null,
     supplierDescription: '',
-    supplierName2: '',
+    supplierName2: null,
     supplierDescription2: '',
-    supplierName3: '',
+    supplierName3: null,
     supplierDescription3: '',
   });
 
   const handleChange = useCallback(
-    (event) => {
-      const { name, value } = event.target;
+    (event, newValue, name) => {
       setValues((prevState) => ({
         ...prevState,
-        [name]: value,
+        [name]: newValue,
       }));
     },
     []
@@ -60,8 +59,8 @@ export const MapDetails = () => {
                       InputProps={{ ...params.InputProps, endAdornment: null }}
                     />
                   )}
-                  value={companies.find((company) => company.title === values.supplierName) || null}
-                  onChange={handleChange}
+                  value={values.supplierName}
+                  onChange={(event, newValue) => handleChange(event, newValue, 'supplierName')}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -75,13 +74,21 @@ export const MapDetails = () => {
                 />
               </Grid>
               <Grid xs={12} md={6}>
-                <TextField
+                <Autocomplete
+                  openOnFocus={false}
                   fullWidth
-                  helperText="You can add more suppliers"
-                  label="Supplier Name 2"
-                  name="supplierName2"
-                  onChange={handleChange}
+                  options={companies}
+                  getOptionLabel={(option) => option.title}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Supplier Name 2"
+                      helperText="Please specify the name of the supplier"
+                      InputProps={{ ...params.InputProps, endAdornment: null }}
+                    />
+                  )}
                   value={values.supplierName2}
+                  onChange={(event, newValue) => handleChange(event, newValue, 'supplierName2')}
                 />
               </Grid>
               <Grid xs={12} md={6}>
@@ -95,13 +102,21 @@ export const MapDetails = () => {
                 />
               </Grid>
               <Grid xs={12} md={6}>
-                <TextField
+                <Autocomplete
+                  openOnFocus={false}
                   fullWidth
-                  helperText="You can add more suppliers"
-                  label="Supplier Name 3"
-                  name="supplierName3"
-                  onChange={handleChange}
+                  options={companies}
+                  getOptionLabel={(option) => option.title}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Supplier Name 3"
+                      helperText="Please specify the name of the supplier"
+                      InputProps={{ ...params.InputProps, endAdornment: null }}
+                    />
+                  )}
                   value={values.supplierName3}
+                  onChange={(event, newValue) => handleChange(event, newValue, 'supplierName3')}
                 />
               </Grid>
               <Grid xs={12} md={6}>

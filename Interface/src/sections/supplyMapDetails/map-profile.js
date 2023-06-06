@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 
 export const MapProfile = () => {
-  const [name, setName] = useState('Anika Visser');
-  const [description, setDescription] = useState('Los Angeles');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -32,14 +32,7 @@ export const MapProfile = () => {
             flexDirection: 'column'
           }}
         >
-          <Avatar
-            src="/assets/avatars/avatar-anika-visser.png"
-            sx={{
-              height: 80,
-              mb: 2,
-              width: 80
-            }}
-          />
+   
           <TextField
             label="Name"
             variant="outlined"
@@ -47,6 +40,7 @@ export const MapProfile = () => {
             onChange={handleNameChange}
             fullWidth
             sx={{ mb: 2 }}
+            helperText="Enter your map name"
           />
           <TextField
             label="Description"
@@ -54,15 +48,11 @@ export const MapProfile = () => {
             value={description}
             onChange={handleDescriptionChange}
             fullWidth
+            helperText="Enter your map description"
           />
         </Box>
       </CardContent>
-      <Divider />
-      <CardActions>
-        <Button fullWidth variant="text">
-          Upload picture
-        </Button>
-      </CardActions>
+      
     </Card>
   );
 };

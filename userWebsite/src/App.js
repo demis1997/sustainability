@@ -469,18 +469,20 @@ const brands = [
 const App = () => {
   const [brandName, setBrandName] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
   const handleSearch = (searchTerm) => {
     setBrandName(searchTerm);
     setShowSuggestions(searchTerm.trim().length > 0);
+    
   };
 
   const handleBrandClick = (brand) => {
+    setSearchPerformed(true);
     if (brand === "Cos") {
       setBrandName(brand);
       setShowSuggestions(false);
     } else if (brand === "Asos") {
-
       console.log("Navigate to Asos brand page");
     } else {
       setBrandName(brand);
@@ -499,7 +501,8 @@ const App = () => {
       <div className="content">
         <SearchBar
           brands={brands.map((brand) => brand.name)}
-          showSuggestions={showSuggestions}
+          
+          showSuggestions={!searchPerformed}
           onSearch={handleSearch}
           onBrandClick={handleBrandClick}
         />
