@@ -18,14 +18,14 @@ const SearchBar = ({ brands, showSuggestions, onSearch, onBrandClick }) => {
     setIsSearching(true);
     setTimeout(() => {
       setIsSearching(false);
-    }, 1000); // Adjust the duration as needed
+    }, 1000); 
   };
 
   return (
     <div className={`search-bar ${isSearching ? "searching" : ""}`}>
       <input
         type="text"
-        placeholder="Search brands"
+        placeholder="Search for brands or categories"
         value={searchTerm}
         onChange={handleInputChange}
       />

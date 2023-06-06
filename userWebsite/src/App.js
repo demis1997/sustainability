@@ -495,8 +495,8 @@ const App = () => {
       <header>
         <div className="logo">Clarity</div>
         <div className="contact">
-          <a href="mailto:contact.clarity@gmail.com">Contact</a>
-        </div>
+        <a href="mailto:contact.clarity@gmail.com" className="button">Contact</a>
+      </div>
       </header>
       <div className="content">
         <SearchBar

@@ -19,11 +19,25 @@ header {
   width: 100%;
   margin-bottom: 20px;
 }
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #A3BAD9;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+}
 
+.button:hover {
+  background-color: #5D7CA6;
+  cursor: pointer;
+}
 .logo {
   font-size: 24px;
   font-weight: bold;
   margin-top: 0;
+  color: #5D7CA6;
 }
 
 .contact {
