@@ -17,7 +17,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Overview | Blockwear
+        Overview | Clarity
       </title>
     </Head>
     <Box

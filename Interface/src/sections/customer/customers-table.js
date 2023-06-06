@@ -4,7 +4,6 @@ import {
   Avatar,
   Box,
   Card,
-  Checkbox,
   Stack,
   Table,
   TableBody,
@@ -21,19 +20,18 @@ export const CustomersTable = (props) => {
   const {
     count = 0,
     items = [],
-    onDeselectAll,
-    onDeselectOne,
+
+
     onPageChange = () => {},
     onRowsPerPageChange,
-    onSelectAll,
-    onSelectOne,
+
+
     page = 0,
     rowsPerPage = 0,
     selected = []
   } = props;
 
-  const selectedSome = (selected.length > 0) && (selected.length < items.length);
-  const selectedAll = (items.length > 0) && (selected.length === items.length);
+
 
   return (
     <Card>
@@ -42,33 +40,20 @@ export const CustomersTable = (props) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedAll}
-                    indeterminate={selectedSome}
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        onSelectAll?.();
-                      } else {
-                        onDeselectAll?.();
-                      }
-                    }}
-                  />
-                </TableCell>
                 <TableCell>
-                  Product
+                  Map Name
                 </TableCell>
                 <TableCell>
                   Suppliers
                 </TableCell>
                 <TableCell>
-                  Link
-                </TableCell>
-                <TableCell>
-                  QR Code
-                </TableCell>
-                <TableCell>
                   Created
+                </TableCell>
+                <TableCell>
+                Short Code
+                </TableCell>
+                <TableCell>
+                  Link
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -83,18 +68,7 @@ export const CustomersTable = (props) => {
                     key={customer.id}
                     selected={isSelected}
                   >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={isSelected}
-                        onChange={(event) => {
-                          if (event.target.checked) {
-                            onSelectOne?.(customer.id);
-                          } else {
-                            onDeselectOne?.(customer.id);
-                          }
-                        }}
-                      />
-                    </TableCell>
+                  
                     <TableCell>
                       <Stack
                         alignItems="center"
@@ -110,16 +84,17 @@ export const CustomersTable = (props) => {
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
-                    </TableCell>
-                    <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
+                    {customer.email}
                     </TableCell>
                     <TableCell>
                       {createdAt}
+                    </TableCell>
+                    <TableCell>
+                    {customer.address.city}, {customer.address.state}, {customer.address.country}
+                    </TableCell>
+    
+                    <TableCell>
+                      {customer.phone}
                     </TableCell>
                   </TableRow>
                 );

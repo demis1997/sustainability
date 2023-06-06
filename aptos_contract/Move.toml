@@ -1,0 +1,9 @@
+[package]
+name = 'supplier'
+version = '1.0.0'
+[dependencies.AptosFramework]
+git = 'https://github.com/aptos-labs/aptos-core.git'
+rev = 'main'
+subdir = 'aptos-move/framework/aptos-framework'
+[addresses]
+main_addr='<df6bfa43a358f4b4a83878edf05393f2b8324e371ccf9617ec6a36036ced5c0d>'

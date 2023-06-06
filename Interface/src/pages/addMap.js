@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import { Box, Container, Stack, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { AccountProfile } from 'src/sections/account/account-profile';
-import { AccountProfileDetails } from 'src/sections/account/account-profile-details';
+import { MapDetails } from 'src/sections/supplyMapDetails/map-details.js';
+import { MapProfile } from 'src/sections/supplyMapDetails/map-profile.js';
 
 const Page = () => (
   <>
     <Head>
       <title>
-        Account | Clarity
+        Create Supply Map | Clarity
       </title>
     </Head>
     <Box
@@ -22,7 +22,7 @@ const Page = () => (
         <Stack spacing={3}>
           <div>
             <Typography variant="h4">
-              Account
+              Create Supply Map
             </Typography>
           </div>
           <div>
@@ -35,14 +35,14 @@ const Page = () => (
                 md={6}
                 lg={4}
               >
-                <AccountProfile />
+                <MapProfile />
               </Grid>
               <Grid
                 xs={12}
                 md={6}
                 lg={8}
               >
-                <AccountProfileDetails />
+                <MapDetails />
               </Grid>
             </Grid>
           </div>
