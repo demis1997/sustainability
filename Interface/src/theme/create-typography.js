@@ -1,4 +1,5 @@
-import '../../../sources/fonts'
+import '../../../sources/fonts/inter.ttf';
+import '../../../sources/fonts/Righteous-Regular.ttf';
 
 export const createTypography = () => {
   return {
