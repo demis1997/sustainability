@@ -16,14 +16,15 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CompanyCard } from 'src/sections/companies/company-card';
 import { CompaniesSearch } from 'src/sections/companies/companies-search';
 
-const companies = [
+export const companies = [
   {
     id: '2569ce0d517a7f06d3ea1f24',
     createdAt: '27/03/2019',
-    description: 'Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.',
+    description: 'we bring the finest cottons and ship all over Europe.',
     logo: '/assets/logos/logo-dropbox.png',
     title: 'Supplier from Uagnda',
     coordinates:'40.0 -74.5',
+
  
   },
   {
@@ -76,6 +77,7 @@ const Page = () => (
         Suppliers
       </title>
     </Head>
+    
     <Box
       component="main"
       sx={{

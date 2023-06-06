@@ -8,7 +8,6 @@ const BrandPage = ({ brandName, brands, onBrandClick }) => {
   }
 
   const getFieldSummary = (field) => {
-
     return `${field} summary`;
   };
 
@@ -67,9 +66,17 @@ const BrandPage = ({ brandName, brands, onBrandClick }) => {
       <h2>Popular Items:</h2>
       <div className="popular-items">
         {brand.popularItems.map((item, index) => (
-          <div className={`item item-${index % 2 === 0 ? "green" : "beige"}`} key={index}>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              <img src={item.image} alt={item.name} />
+          <div
+            className={`item item-${index % 2 === 0 ? "green" : "beige"}`}
+            key={index}
+          >
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="item-link"
+            >
+              <img src={item.image} alt={item.name} className="item-image" />
               <h3 className="item-title">{item.name}</h3>
             </a>
           </div>
@@ -79,9 +86,21 @@ const BrandPage = ({ brandName, brands, onBrandClick }) => {
       <h2>Similar Brands:</h2>
       <div className="similar-brands">
         {brand.similarBrands.map((similarBrand, index) => (
-          <div className={`brand brand-${index % 2 === 0 ? "green" : "beige"}`} key={index}>
-            <a href={similarBrand.link} target="_blank" rel="noopener noreferrer">
-              <img src={similarBrand.image} alt={similarBrand.name} />
+          <div
+            className={`brand brand-${index % 2 === 0 ? "green" : "beige"}`}
+            key={index}
+          >
+            <a
+              href={similarBrand.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="brand-link"
+            >
+              <img
+                src={similarBrand.image}
+                alt={similarBrand.name}
+                className="brand-image"
+              />
               <h3 className="brand-title">{similarBrand.name}</h3>
             </a>
           </div>

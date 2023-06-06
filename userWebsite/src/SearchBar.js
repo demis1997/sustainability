@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const SearchBar = ({ brands, showSuggestions, onSearch, onBrandClick }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -13,11 +14,18 @@ const SearchBar = ({ brands, showSuggestions, onSearch, onBrandClick }) => {
     onBrandClick(brand);
   };
 
+  const handleSearch = () => {
+    setIsSearching(true);
+    setTimeout(() => {
+      setIsSearching(false);
+    }, 1000); 
+  };
+
   return (
-    <div className="search-bar">
+    <div className={`search-bar ${isSearching ? "searching" : ""}`}>
       <input
         type="text"
-        placeholder="Search brands"
+        placeholder="Search for brands or categories"
         value={searchTerm}
         onChange={handleInputChange}
       />

@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: #FEFFD4; 
 }
 
 .app {
@@ -18,11 +19,25 @@ header {
   width: 100%;
   margin-bottom: 20px;
 }
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #A3BAD9;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+}
 
+.button:hover {
+  background-color: #5D7CA6;
+  cursor: pointer;
+}
 .logo {
   font-size: 24px;
   font-weight: bold;
   margin-top: 0;
+  color: #5D7CA6;
 }
 
 .contact {
@@ -42,22 +57,29 @@ header {
   text-align: center;
   margin-top: 30vh;
 }
+.search-bar input {
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+  font-size: 16px;
+  background-color: #D9DD83;
+}
+
 
 input[type="text"] {
-  width: 300%;
+  width: 300px;
   height: 60px;
   padding: 10px;
   font-size: 18px;
-  margin-left: -100%;
 }
 
 .suggestions {
   position: absolute;
   top: 58px;
-  left: 53%;
+  left: 50%;
   transform: translateX(-50%);
-  width: 300%;
-  background-color: #fff;
+  width: 300px;
+  background-color: #EBEEAB;
   border: 1px solid #ccc;
   list-style-type: none;
   padding: 0;
