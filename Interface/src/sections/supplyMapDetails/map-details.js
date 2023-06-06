@@ -12,27 +12,32 @@ import {
   Autocomplete
 } from '@mui/material';
 
-import { companies } from '../../pages/supplierList'; 
+import { companies } from '../../pages/supplierList';
 
 export const MapDetails = () => {
-
+  const [values, setValues] = useState({
+    supplierName: '',
+    supplierDescription: '',
+    supplierName2: '',
+    supplierDescription2: '',
+    supplierName3: '',
+    supplierDescription3: '',
+  });
 
   const handleChange = useCallback(
-    (event, newValue) => {
+    (event) => {
+      const { name, value } = event.target;
       setValues((prevState) => ({
         ...prevState,
-        supplierName: newValue?.title || ''
+        [name]: value,
       }));
     },
     []
   );
 
-  const handleSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
-    },
-    []
-  );
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+  }, []);
 
   return (
     <form autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -43,7 +48,7 @@ export const MapDetails = () => {
             <Grid container spacing={3}>
               <Grid xs={12} md={6}>
                 <Autocomplete
-                   openOnFocus={false} 
+                  openOnFocus={false}
                   fullWidth
                   options={companies}
                   getOptionLabel={(option) => option.title}

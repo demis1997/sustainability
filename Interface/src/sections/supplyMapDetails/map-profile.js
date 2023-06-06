@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Avatar,
   Box,
@@ -6,64 +7,62 @@ import {
   CardActions,
   CardContent,
   Divider,
-  Typography
+  TextField
 } from '@mui/material';
 
-const user = {
-  avatar: '/assets/avatars/avatar-anika-visser.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Anika Visser',
-  timezone: 'GTM-7'
-};
+export const MapProfile = () => {
+  const [name, setName] = useState('Anika Visser');
+  const [description, setDescription] = useState('Los Angeles');
 
-export const MapProfile = () => (
-  <Card>
-    <CardContent>
-      <Box
-        sx={{
-          alignItems: 'center',
-          display: 'flex',
-          flexDirection: 'column'
-        }}
-      >
-        <Avatar
-          src={user.avatar}
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  return (
+    <Card>
+      <CardContent>
+        <Box
           sx={{
-            height: 80,
-            mb: 2,
-            width: 80
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'column'
           }}
-        />
-        <Typography
-          gutterBottom
-          variant="h5"
         >
-          {user.name}
-        </Typography>
-        <Typography
-          color="text.secondary"
-          variant="body2"
-        >
-          {user.city} {user.country}
-        </Typography>
-        <Typography
-          color="text.secondary"
-          variant="body2"
-        >
-          {user.timezone}
-        </Typography>
-      </Box>
-    </CardContent>
-    <Divider />
-    <CardActions>
-      <Button
-        fullWidth
-        variant="text"
-      >
-        Upload picture
-      </Button>
-    </CardActions>
-  </Card>
-);
+          <Avatar
+            src="/assets/avatars/avatar-anika-visser.png"
+            sx={{
+              height: 80,
+              mb: 2,
+              width: 80
+            }}
+          />
+          <TextField
+            label="Name"
+            variant="outlined"
+            value={name}
+            onChange={handleNameChange}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            label="Description"
+            variant="outlined"
+            value={description}
+            onChange={handleDescriptionChange}
+            fullWidth
+          />
+        </Box>
+      </CardContent>
+      <Divider />
+      <CardActions>
+        <Button fullWidth variant="text">
+          Upload picture
+        </Button>
+      </CardActions>
+    </Card>
+  );
+};
