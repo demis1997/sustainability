@@ -1,6 +1,3 @@
-import '../../../sources/fonts/inter.ttf';
-import '../../../sources/fonts/Righteous-Regular.ttf';
-
 export const createTypography = () => {
   return {
     fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
