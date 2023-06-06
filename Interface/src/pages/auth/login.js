@@ -55,6 +55,26 @@ const Page = () => {
   });
   // Create an AptosClient to interact with devnet.
   const client = new AptosClient('https://fullnode.devnet.aptoslabs.com/v1');
+  const [address, setAddress] = useState('');
+  const [publicKey, setPublicKey] = useState('');
+
+  const useWallet = async () => {
+    try {
+      // Connect to Aptos
+      await window.martian.connect();
+      if (window.martian.isConnected) {
+        const { address, publicKey } = window.martian;
+        setAddress(address);
+        setPublicKey(publicKey);
+        
+        await auth.signIn(address, publicKey); // Sign in with Aptos address and public key
+        router.push('/');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  };
 
   const handleMethodChange = useCallback(
     (event, value) => {
@@ -62,15 +82,7 @@ const Page = () => {
     },
     []
   );
-  const useWallet = async() => {
-    // connect
-    const { address, publicKey } = await window.martian.connect();
-    if (window.martian.isConnected){
-      (router.push('/'))}
-    setAddress(address);
-    setPublicKey(publicKey);
 
-  }
 
 
   
