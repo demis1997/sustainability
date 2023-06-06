@@ -24,6 +24,7 @@ const companies = [
     logo: '/assets/logos/logo-dropbox.png',
     title: 'Supplier from Uagnda',
     coordinates:'40.0 -74.5',
+
  
   },
   {
@@ -76,6 +77,7 @@ const Page = () => (
         Suppliers
       </title>
     </Head>
+    
     <Box
       component="main"
       sx={{

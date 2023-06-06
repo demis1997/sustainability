@@ -24,7 +24,9 @@ address 0x1 {
                 name: name,
                 location: location,
                 description: description,
-                certification: certification
+                certification: certification,
+                created-at: date,
+                logo:image
             };
             
 
