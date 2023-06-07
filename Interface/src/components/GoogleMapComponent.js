@@ -38,7 +38,7 @@ class GoogleMapComponent extends Component {
         onMouseOut={this.handleMarkerMouseOut}
       >
         {this.state.activeMarker === marker && (
-          <InfoWindow onCloseClick={this.handleMarkerMouseOut}>
+          <InfoWindow>
             <div>
               <h3>{marker.title}</h3>
               <p>{marker.description}</p>
