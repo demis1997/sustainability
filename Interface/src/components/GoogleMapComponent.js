@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '800sx',
@@ -12,12 +12,42 @@ const center = {
 };
 
 class GoogleMapComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeMarker: null
+    };
+  }
+
+  handleMarkerMouseOver = (marker) => {
+    this.setState({ activeMarker: marker });
+  };
+
+  handleMarkerMouseOut = () => {
+    this.setState({ activeMarker: null });
+  };
+
   renderMarkers() {
     const { markers } = this.props;
 
     return markers.map((marker, index) => (
-      <Marker key={index} 
-      position={marker.position} />
+      <Marker
+        key={index}
+        position={marker.position}
+        onMouseOver={() => this.handleMarkerMouseOver(marker)}
+        onMouseOut={this.handleMarkerMouseOut}
+      >
+        {this.state.activeMarker === marker && (
+          <InfoWindow onCloseClick={this.handleMarkerMouseOut}>
+            <div>
+              <h3>{marker.title}</h3>
+              <p>{marker.description}</p>
+              {/* Add any additional information here */}
+              <p>{marker.additionalInfo}</p>
+            </div>
+          </InfoWindow>
+        )}
+      </Marker>
     ));
   }
 

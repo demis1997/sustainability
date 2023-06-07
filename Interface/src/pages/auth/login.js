@@ -74,8 +74,8 @@ const Page = () => {
       console.error(err);
     }
   };
-  };
-
+  
+  
   const handleMethodChange = useCallback(
     (event, value) => {
       setMethod(value);
