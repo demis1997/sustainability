@@ -20,8 +20,17 @@ const center = {
 };
 
 const markers = [
-  { position: { lat: -3.745, lng: -38.523 } },
-  { position: { lat: -3.0, lng: -38.525 } },
+  {
+    position: { lat: -3.745, lng: -38.523 },
+    name: 'Marker 1',
+    address: '123 Main St',
+    additionalInfo: 'Additional information 1'
+  },
+  {
+    position: { lat: -3.0, lng: -38.525 },
+    name: 'Marker 2',
+    address: '456 Elm St'
+  },
   { position: { lat: -0.752, lng: -37.525 } },
   { position: { lat: -6.752, lng: -38.525 } },
   // Add more marker objects as needed

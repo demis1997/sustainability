@@ -40,9 +40,8 @@ class GoogleMapComponent extends Component {
         {this.state.activeMarker === marker && (
           <InfoWindow>
             <div>
-              <h3>{marker.title}</h3>
-              <p>{marker.description}</p>
-              {/* Add any additional information here */}
+              <h3>{marker.name}</h3>
+              <p>{marker.address}</p>
               <p>{marker.additionalInfo}</p>
             </div>
           </InfoWindow>
@@ -54,7 +53,7 @@ class GoogleMapComponent extends Component {
   render() {
     const apiKey = "AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY";
     
-    const { center } = this.props;
+    const { center, markers } = this.props;
     // console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
     // console.log((process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY).toString());
     //console.log("AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY");
@@ -66,20 +65,15 @@ class GoogleMapComponent extends Component {
     }
     
     return (
-      <LoadScript
-      googleMapsApiKey={apiKey}
-    >
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={5}
-        >
-          { /* Child components, such as markers, info windows, etc. */ }
-          {this.renderMarkers()}
-        </GoogleMap>
-      </LoadScript>
-    )
+        <LoadScript googleMapsApiKey={apiKey}>
+          <GoogleMap mapContainerStyle={containerStyle}
+           center={center}
+           zoom={5}>
+            {this.renderMarkers()}
+          </GoogleMap>
+        </LoadScript>
+      );
+    }
   }
-}
-
-export default GoogleMapComponent;
+  
+  export default GoogleMapComponent;
