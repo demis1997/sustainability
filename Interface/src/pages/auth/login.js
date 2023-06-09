@@ -1,25 +1,19 @@
 import { useCallback, useState } from 'react';
 import Head from 'next/head';
-import NextLink from 'next/link';
-import { useRouter } from 'next/navigation';
+
+import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Types, AptosClient } from 'aptos';
-
 import {
-  Alert,
   Box,
   Button,
-  FormHelperText,
-  Link,
   Stack,
-  Tab,
-  Tabs,
-  TextField,
   Typography
 } from '@mui/material';
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
+
+
 
 const Page = () => {
   const router = useRouter();
@@ -53,15 +47,14 @@ const Page = () => {
       }
     }
   });
-  // Create an AptosClient to interact with devnet.
-  const client = new AptosClient('https://fullnode.devnet.aptoslabs.com/v1');
-  const [address, setAddress] = useState('');
-  const [publicKey, setPublicKey] = useState('');
+
 
   const useWallet = async () => {
     try {
       // Connect to Aptos
       await window.martian.connect();
+      
+      // Check if the connection was successful
       if (window.martian.isConnected) {
         const { address, publicKey } = window.martian;
         setAddress(address);
@@ -69,22 +62,14 @@ const Page = () => {
         
         await auth.signIn(address, publicKey); // Sign in with Aptos address and public key
         router.push('/');
+      } else {
+        console.error('Failed to connect to the Martian wallet');
       }
     } catch (err) {
       console.error(err);
     }
   };
   
-  
-  const handleMethodChange = useCallback(
-    (event, value) => {
-      setMethod(value);
-    },
-    []
-  );
-
-
-
   
   const handleSkip = useCallback(
     () => {
@@ -153,9 +138,7 @@ const Page = () => {
                   size="large"
                   sx={{ mt: 3 }}
                   onClick={useWallet}
-                  // type="submit"
-                  // variant="contained"
-                
+        
                 >
                  Login with Aptos
                 </Button>

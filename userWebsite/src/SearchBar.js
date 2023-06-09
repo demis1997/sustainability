@@ -1,47 +1,44 @@
 import React, { useState } from "react";
 
-const SearchBar = ({ brands, showSuggestions, onSearch, onBrandClick }) => {
+
+const SearchBar = ({ brands, onSearch, onBrandClick }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-    onSearch(event.target.value);
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+    setShowSuggestions(newSearchTerm.length > 0); 
   };
 
-  const handleSuggestionClick = (brand) => {
+  const handleBrandSelection = (brand) => {
     setSearchTerm(brand);
+    setShowSuggestions(false);
     onBrandClick(brand);
   };
 
-  const handleSearch = () => {
-    setIsSearching(true);
-    setTimeout(() => {
-      setIsSearching(false);
-    }, 1000); 
-  };
+  const filteredBrands = brands.filter((brand) =>
+    brand.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className={`search-bar ${isSearching ? "searching" : ""}`}>
+    <div className="search-bar">
       <input
         type="text"
-        placeholder="Search for brands or categories"
         value={searchTerm}
         onChange={handleInputChange}
+        placeholder="Search for brands and categories"
       />
       {showSuggestions && (
         <ul className="suggestions">
-          {brands
-            .filter((brand) =>
-              brand.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            .map((brand) => (
-              <li key={brand} onClick={() => handleSuggestionClick(brand)}>
-                {brand}
-              </li>
-            ))}
+          {filteredBrands.map((brand) => (
+            <li key={brand} onClick={() => handleBrandSelection(brand)}>
+              {brand}
+            </li>
+          ))}
         </ul>
       )}
+
     </div>
   );
 };

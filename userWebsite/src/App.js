@@ -6,14 +6,13 @@ import "./App.css";
 const brands = [
   {
     name: "Gucci",
-    ethicality: "High",
-    supplyCountry: "Italy",
-    certification: "Certified",
-    overallRating: "4.5",
-    vegan: "No",
     website: "gucci.com",
-    price: "$$$",
     summary: "We are rich",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     popularItems: [
       {
         name: "Red Dress",
@@ -46,14 +45,13 @@ const brands = [
   },
   {
     name: "Cos",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
     website: "cosstores.com",
-    price: "$$",
-    summary: "Cos summary",
+    summary: "LOREM IPSUME DOLORES PLEASE WORK ATE",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     popularItems: [
       {
         name: "Item 1",
@@ -81,14 +79,13 @@ const brands = [
   },
   {
     name: "Asos",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "Asos.com",
-    price: "$$",
+    website: "asos.com",
     summary: "Asos summary",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     popularItems: [
       {
         name: "Item 1",
@@ -116,13 +113,12 @@ const brands = [
   },
   {
     name: "Nike",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "Nike.com",
-    price: "$$",
+    website: "nike.com",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Nike summary",
     popularItems: [
       {
@@ -151,13 +147,12 @@ const brands = [
   },
   {
     name: "Adidas",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "Adidas.com",
-    price: "$$",
+    website: "adidas.com",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Adidas summary",
     popularItems: [
       {
@@ -186,13 +181,12 @@ const brands = [
   },
   {
     name: "Puma",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "Puma.com",
-    price: "$$",
+    website: "pume.com",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Puma summary",
     popularItems: [
       {
@@ -221,13 +215,12 @@ const brands = [
   },
   {
     name: "Under Armour",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "cosstores.com",
-    price: "$$",
+    website: "underarmour.com",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Under Armour summary",
     popularItems: [
       {
@@ -256,13 +249,12 @@ const brands = [
   },
   {
     name: "DR.Martens",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "DR.Martens.com",
+    website: "drmartens.com",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
     price: "$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "DR.Martens summary",
     popularItems: [
       {
@@ -291,13 +283,12 @@ const brands = [
   },
   {
     name: "Balenciaga",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "Balenciaga.com",
-    price: "$$",
+    website: "balenciaga.com",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Balenciaga summary",
     popularItems: [
       {
@@ -326,13 +317,12 @@ const brands = [
   },
   {
     name: "Tom Ford",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
-    website: "TomFord.com",
-    price: "$$",
+    website: "tom-ford.com",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Tom Ford summary",
     popularItems: [
       {
@@ -361,13 +351,12 @@ const brands = [
   },
   {
     name: "Emporio Armani",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
     website: "armani.com",
-    price: "$$",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Armani summary",
     popularItems: [
       {
@@ -396,13 +385,12 @@ const brands = [
   },
   {
     name: "Giorgio Armani",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
     website: "armani.com",
-    price: "$$",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Armani summary",
     popularItems: [
       {
@@ -431,13 +419,12 @@ const brands = [
   },
   {
     name: "Yves Saint Laurent",
-    ethicality: "Medium",
-    supplyCountry: "Various",
-    certification: "Not certified",
-    overallRating: "4.0",
-    vegan: "Yes",
     website: "yvesaintlaurent.com",
-    price: "$$",
+    ethicality: "7.3",
+    certification: "HHC, PPC, ALTPS",
+    overallRating: "4.5",
+    price: "$$$",
+    retailers: "Lyst.com, Farfetch, MR.Porter",
     summary: "Yves Saint Laurent summary",
     popularItems: [
       {
@@ -466,28 +453,27 @@ const brands = [
   },
 ];
 
+const randomTextOptions = [
+  "Transparent sustainable fashion",
+  "Understand your purchases!",
+  "Let your next purchase not harm the Antarctic"
+];
+
 const App = () => {
   const [brandName, setBrandName] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [searchPerformed, setSearchPerformed] = useState(false);
+  const [randomText, setRandomText] = useState(
+    "Giving you clarity on your favourite brands"
+  );
 
   const handleSearch = (searchTerm) => {
     setBrandName(searchTerm);
-    setShowSuggestions(searchTerm.trim().length > 0);
-    
+    setRandomText(
+      randomTextOptions[Math.floor(Math.random() * randomTextOptions.length)]
+    );
   };
 
   const handleBrandClick = (brand) => {
-    setSearchPerformed(true);
-    if (brand === "Cos") {
-      setBrandName(brand);
-      setShowSuggestions(false);
-    } else if (brand === "Asos") {
-      console.log("Navigate to Asos brand page");
-    } else {
-      setBrandName(brand);
-      setShowSuggestions(false);
-    }
+    setBrandName(brand);
   };
 
   return (
@@ -495,16 +481,23 @@ const App = () => {
       <header>
         <div className="logo">Clarity</div>
         <div className="contact">
-        <a href="mailto:contact.clarity@gmail.com" className="button">Contact</a>
-      </div>
+          <a href="mailto:contact.clarity@gmail.com" className="button">
+            Contact
+          </a>
+        </div>
       </header>
       <div className="content">
+        {!brandName && (
+          <div className="intro-text">
+            <h2>{randomText}</h2>
+          </div>
+        )}
         <SearchBar
           brands={brands.map((brand) => brand.name)}
-          
-          showSuggestions={!searchPerformed}
+          showSuggestions={!brandName} // Show suggestions only when brandName is empty
           onSearch={handleSearch}
           onBrandClick={handleBrandClick}
+          randomTextOptions={randomTextOptions} // Pass the random text options array
         />
         {brandName && (
           <BrandPage
@@ -517,5 +510,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;
