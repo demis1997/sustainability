@@ -1,0 +1,67 @@
+{
+	"ABI version": 2,
+	"version": "2.3",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"sendRemainingGasTo","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "activate",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addSupplier",
+			"inputs": [
+				{"name":"name","type":"string"},
+				{"name":"coordinates","type":"string"},
+				{"name":"logoURL","type":"string"},
+				{"name":"description","type":"string"},
+				{"name":"supplierAddress","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getSupplier",
+			"inputs": [
+				{"name":"id","type":"uint256"}
+			],
+			"outputs": [
+				{"name":"name","type":"string"},
+				{"name":"coordinates","type":"string"},
+				{"name":"uniqueId","type":"uint256"},
+				{"name":"logoURL","type":"string"},
+				{"name":"description","type":"string"},
+				{"name":"supplierAddress","type":"address"}
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"_nonce","type":"uint256"},
+		{"key":2,"name":"_managerPublicKey","type":"uint256"},
+		{"key":3,"name":"_owner","type":"address"}
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_nonce","type":"uint256"},
+		{"name":"_managerPublicKey","type":"uint256"},
+		{"name":"supplierId","type":"uint256"},
+		{"name":"_owner","type":"address"},
+		{"name":"_activated","type":"bool"},
+		{"name":"_used","type":"bool"},
+		{"components":[{"name":"name","type":"string"},{"name":"coordinates","type":"string"},{"name":"id","type":"uint256"},{"name":"logoURL","type":"string"},{"name":"description","type":"string"},{"name":"supplierAddress","type":"address"}],"name":"suppliers","type":"map(uint256,tuple)"}
+	]
+}
