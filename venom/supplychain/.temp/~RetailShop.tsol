@@ -4,12 +4,11 @@ pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
 import "./~Supplier.tsol";
-
 contract RetailShops {
-    uint static _nonce;
-    uint static _managerPublicKey;
+
+
     uint public retailShopId;
-    address static _owner;
+
     bool _activated;
     bool _used;
     
@@ -21,30 +20,29 @@ contract RetailShops {
         string description;
         address retailShopAddress;
         uint[] supplierIds;
-          mapping(uint => uint[]) supplyChains;
     }
     
     mapping(address => RetailShop) retailShops;
 
-    constructor(address sendRemainingGasTo) public {
+    constructor() public {
         tvm.accept();
-  
     }
     
     function activate() public {
-        require(msg.pubkey() == _managerPublicKey, 200);
+   
         tvm.accept();
         _activated = true;
         tvm.rawReserve(0.1e9, 0);
-        _owner.transfer({ value: 0, flag: 128, bounce: false });
+
     }
     
     function addRetailShop(
-        RetailShop.name,
-      RetailShop.coordinates,
-          RetailShop.logoURL,
-         RetailShop.description,
-         RetailShop.retailShopAddress
+        string  name,
+        string  coordinates,
+        int id,
+        string  logoURL,
+        string  description,
+        address retailShopAddress
     ) external {
         require(_activated && !_used, 202);
         tvm.rawReserve(0.1e9, 0);
@@ -52,7 +50,7 @@ contract RetailShops {
         retailShops[msg.sender] = RetailShop(
             name,
             coordinates,
-            retailShopId,
+            id,
             logoURL,
             description,
             retailShopAddress,
@@ -61,26 +59,23 @@ contract RetailShops {
         _used = true;
     }
     
-function createSupplyChain() external {
-    require(_activated && !_used, 202);
-    tvm.rawReserve(0.1e9, 0);
-    RetailShop  retailShop = retailShops[msg.sender];
-    uint supplyChainId = retailShop.supplyChainCount + 1;
-    retailShop.supplyChains[supplyChainId] = new uint[](0);
-    retailShop.supplyChainCount++;
-    _used = true;
-}
+    function createSupplyChain() external {
+        require(_activated && !_used, 202);
+        tvm.rawReserve(0.1e9, 0);
+        RetailShop  retailShop = retailShops[msg.sender];
+        uint supplyChainId = retailShop.supplierIds.length + 1;
+        retailShop.supplierIds.push(supplyChainId);
+        _used = true;
+    }
 
-function addSupplierToSupplyChain(uint supplyChainId, uint supplierId) external {
-    require(_activated && !_used, 202);
-    tvm.rawReserve(0.1e9, 0);
-    RetailShop  retailShop = retailShops[msg.sender];
-    retailShop.supplyChains[supplyChainId].push(supplierId);
-    _used = true;
-}
+    function addSupplierToSupplyChain(uint supplierId) external {
 
+        tvm.rawReserve(0.1e9, 0);
+        RetailShop retailShop = retailShops[msg.sender];
+        retailShop.supplierIds.push(supplierId);
+        _used = true;
+    }
 
-    
     function getRetailShop(address retailShopAddress) external view returns (
         string  name,
         string  coordinates,
@@ -100,5 +95,12 @@ function addSupplierToSupplyChain(uint supplyChainId, uint supplierId) external 
             retailShop.retailShopAddress,
             retailShop.supplierIds
         );
+    
     }
+    function getSupplierCoordinates(address retailShopAddress, uint supplierIndex) external view returns (string memory) {
+        RetailShop  retailShop = retailShops[retailShopAddress];
+        require(supplierIndex < retailShop.supplierIds.length);
+        return retailShop.coordinates;
+    }
+    
 }

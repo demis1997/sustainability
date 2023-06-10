@@ -5,10 +5,10 @@ pragma AbiHeader pubkey;
 
 import "./Supplier.tsol";
 contract RetailShops {
-    uint static _nonce;
-    uint static _managerPublicKey;
+
+
     uint public retailShopId;
-    address static _owner;
+
     bool _activated;
     bool _used;
     
@@ -29,11 +29,11 @@ contract RetailShops {
     }
     
     function activate() public {
-        require(msg.pubkey() == _managerPublicKey, 200);
+   
         tvm.accept();
         _activated = true;
         tvm.rawReserve(0.1e9, 0);
-        _owner.transfer({ value: 0, flag: 128, bounce: false });
+
     }
     
     function addRetailShop(
