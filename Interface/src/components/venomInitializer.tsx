@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { VenomConnect } from 'venom-connect';
 //import logo from './logo.svg';
-import './App.css';
-import { initVenomConnect } from 'src/venom-connect/configure';
-import VenomConnect from 'venom-connect';
 
-function App() {
-  const [venomConnect, setVenomConnect] = useState<VenomConnect | undefined>();
-  const init = async () => {
-    const _venomConnect = await initVenomConnect();
-    setVenomConnect(_venomConnect);
-  };
-  useEffect(() => {
-    init();
-  }, []);
+type Props = {
+  venomConnect: VenomConnect | undefined;
+};
 
-  return (
-    <div className="App">
-      ...
-    </div>
+function Main({ venomConnect }: Props) {
+  return React.createElement(
+    'div',
+    { className: 'App' },
+    // JSX content goes here
   );
 }
 
-export default App;
+export default Main;
