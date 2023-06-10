@@ -100,8 +100,8 @@ const config: LockliftConfig = {
         },
       },
       giver: {
-        address: "0:0000000000000000000000000000000000000000000000000000000000000000",
-        phrase: "phrase",
+        address: "0:9b1859ed5b3ddf8b1833beabcf85b1e83d42a04ee50d160cb7afbcf62d12cccb",
+        phrase: "review return blouse cabin claim puppy text patient dream sleep journey canvas",
         accountId: 0,
       },
       tracing: {

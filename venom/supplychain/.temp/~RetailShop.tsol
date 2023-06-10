@@ -3,7 +3,7 @@ pragma ever-solidity >= 0.61.2;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
-import "./Supplier.tsol";
+import "./~Supplier.tsol";
 contract RetailShops {
 
 

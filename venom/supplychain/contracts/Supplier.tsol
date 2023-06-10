@@ -5,9 +5,9 @@ pragma AbiHeader pubkey;
 
 contract Supplier {
     uint static _nonce;
-    uint static _managerPublicKey;
+
     uint supplierId;
-    address static _owner;
+
     bool _activated;
     bool _used;
     
@@ -30,11 +30,11 @@ contract Supplier {
 
     
    function activate() public {
-        require(msg.pubkey() == _managerPublicKey, 200);
+    
         tvm.accept();
         _activated = true;
         tvm.rawReserve(0.1e9, 0);
-        _owner.transfer({ value: 0, flag: 128, bounce: false });
+  
     }
 
       function addSupplier(
@@ -44,7 +44,7 @@ contract Supplier {
         string description,
         address supplierAddress
     ) external {
-        require(msg.sender == _owner, 201);
+
         require(_activated && !_used, 202);
         tvm.rawReserve(0.1e9, 0);
         supplierId++;
