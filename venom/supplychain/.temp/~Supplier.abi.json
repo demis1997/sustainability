@@ -6,7 +6,6 @@
 		{
 			"name": "constructor",
 			"inputs": [
-				{"name":"sendRemainingGasTo","type":"address"}
 			],
 			"outputs": [
 			]

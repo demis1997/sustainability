@@ -1,12 +1,11 @@
 {
 	"ABI version": 2,
-	"version": "2.3",
+	"version": "2.2",
 	"header": ["pubkey", "time", "expire"],
 	"functions": [
 		{
 			"name": "constructor",
 			"inputs": [
-				{"name":"sendRemainingGasTo","type":"address"}
 			],
 			"outputs": [
 			]
@@ -38,7 +37,7 @@
 			"outputs": [
 				{"name":"name","type":"string"},
 				{"name":"coordinates","type":"string"},
-				{"name":"uniqueid","type":"uint256"},
+				{"name":"uniqueId","type":"uint256"},
 				{"name":"logoURL","type":"string"},
 				{"name":"description","type":"string"},
 				{"name":"supplierAddress","type":"address"}

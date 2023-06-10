@@ -22,7 +22,7 @@ contract Supplier {
    mapping(uint => Supplier) suppliers;
 
 
-    constructor(address sendRemainingGasTo) public {
+    constructor() public {
     tvm.accept();
 
 
