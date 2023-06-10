@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
+import { VenomConnect } from 'src/venom-connect';
 
 
 
@@ -48,22 +49,61 @@ const Page = () => {
     }
   });
 
-
+  //Venom Code
+  const getAddress = async (provider) => {
+    const providerState = await provider?.getProviderState?.();
+    return providerState?.permissions.accountInteraction?.address.toString();
+  };
+  
+  const checkAuth = async (_venomConnect) => {
+    const auth = await _venomConnect?.checkAuth();
+    if (auth) await getAddress(_venomConnect);
+  };
+  
+  const initStandalone = async () => {
+    const standalone = await venomConnect?.getStandalone();
+    setStandAloneProvider(standalone);
+  };
+  
+  const onLogin = async () => {
+    if (!venomConnect) return;
+    await venomConnect.connect();
+  };
+  
+  const onConnect = async (provider) => {
+    setVenomProvider(provider);
+    await onProviderReady(provider);
+  };
+  
+  const onDisconnect = async () => {
+    venomProvider?.disconnect();
+    setAddress(undefined);
+  };
+  
+  const onProviderReady = async (provider) => {
+    const venomWalletAddress = provider ? await getAddress(provider) : undefined;
+    setAddress(venomWalletAddress);
+  };
+  
+  useEffect(() => {
+    const off = venomConnect?.on('connect', onConnect);
+    if (venomConnect) {
+      initStandalone();
+      checkAuth(venomConnect);
+    }
+    // Clean up event listener
+    return () => {
+      off?.();
+    };
+  }, []);
+  //
   const useWallet = async () => {
     try {
-      // Connect to Aptos
-      await window.martian.connect();
-      
-      // Check if the connection was successful
-      if (window.martian.isConnected) {
-        const { address, publicKey } = window.martian;
-        setAddress(address);
-        setPublicKey(publicKey);
-        
-        await auth.signIn(address, publicKey); // Sign in with Aptos address and public key
-        router.push('/');
-      } else {
-        console.error('Failed to connect to the Martian wallet');
+      { venomConnect } {
+        const login = async () => {
+          if (!venomConnect) return;
+          await venomConnect.connect();
+        };
       }
     } catch (err) {
       console.error(err);
@@ -140,7 +180,7 @@ const Page = () => {
                   onClick={useWallet}
         
                 >
-                 Login with Aptos
+                 Login with Venom
                 </Button>
                 <Button
                   fullWidth

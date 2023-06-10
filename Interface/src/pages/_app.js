@@ -9,21 +9,29 @@ import { useNProgress } from 'src/hooks/use-nprogress';
 import { createTheme } from 'src/theme';
 import { createEmotionCache } from 'src/utils/create-emotion-cache';
 import 'simplebar-react/dist/simplebar.min.css';
-import { initVenomConnect } from './venom-connect/configure.ts';
+import { initVenomConnect } from './venom-connect/configure';
 import VenomConnect from 'venom-connect';
+
+
+//  
 const clientSideEmotionCache = createEmotionCache();
 
 const SplashScreen = () => null;
 
 const App = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
   useNProgress();
-
   const getLayout = Component.getLayout ?? ((page) => page);
-
   const theme = createTheme();
 
+  useEffect(() => {
+    const init = async () => {
+      const _venomConnect = await initVenomConnect();
+      setVenomConnect(_venomConnect);
+    };
+    init();
+  }, []);
+  
   return (
     <CacheProvider value={emotionCache}>
       <Head>
