@@ -52,13 +52,9 @@ class GoogleMapComponent extends Component {
   }
 
   render() {
-    const apiKey = "AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY";
+    const apiKey = "";
     
     const { center } = this.props;
-    // console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
-    // console.log((process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY).toString());
-    //console.log("AIzaSyCZuMUHXGzhFaLyFxonBb4hBIzwy4ksrgY");
-    //console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY.toString());
 
     if (!center) {
       // If no center is provided, do not render the map
