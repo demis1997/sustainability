@@ -1,5 +1,5 @@
 import React from 'react';
-import { VenomConnect } from 'venom-connect';
+import { VenomConnect } from '..venom-connect';
 
 function ConnectWallet({ venomConnect }) {
   const login = async () => {
