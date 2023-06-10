@@ -1,0 +1,104 @@
+
+pragma ever-solidity >= 0.61.2;
+pragma AbiHeader expire;
+pragma AbiHeader pubkey;
+
+import "./Supplier.tsol";
+
+contract RetailShops {
+    uint static _nonce;
+    uint static _managerPublicKey;
+    uint public retailShopId;
+    address static _owner;
+    bool _activated;
+    bool _used;
+    
+    struct RetailShop {
+        string name;
+        string coordinates;
+        int id;
+        string logoURL;
+        string description;
+        address retailShopAddress;
+        uint[] supplierIds;
+          mapping(uint => uint[]) supplyChains;
+    }
+    
+    mapping(address => RetailShop) retailShops;
+
+    constructor(address sendRemainingGasTo) public {
+        tvm.accept();
+  
+    }
+    
+    function activate() public {
+        require(msg.pubkey() == _managerPublicKey, 200);
+        tvm.accept();
+        _activated = true;
+        tvm.rawReserve(0.1e9, 0);
+        _owner.transfer({ value: 0, flag: 128, bounce: false });
+    }
+    
+    function addRetailShop(
+        RetailShop.name,
+      RetailShop.coordinates,
+          RetailShop.logoURL,
+         RetailShop.description,
+         RetailShop.retailShopAddress
+    ) external {
+        require(_activated && !_used, 202);
+        tvm.rawReserve(0.1e9, 0);
+        retailShopId++;
+        retailShops[msg.sender] = RetailShop(
+            name,
+            coordinates,
+            retailShopId,
+            logoURL,
+            description,
+            retailShopAddress,
+            new uint[](0)
+        );
+        _used = true;
+    }
+    
+function createSupplyChain() external {
+    require(_activated && !_used, 202);
+    tvm.rawReserve(0.1e9, 0);
+    RetailShop  retailShop = retailShops[msg.sender];
+    uint supplyChainId = retailShop.supplyChainCount + 1;
+    retailShop.supplyChains[supplyChainId] = new uint[](0);
+    retailShop.supplyChainCount++;
+    _used = true;
+}
+
+function addSupplierToSupplyChain(uint supplyChainId, uint supplierId) external {
+    require(_activated && !_used, 202);
+    tvm.rawReserve(0.1e9, 0);
+    RetailShop  retailShop = retailShops[msg.sender];
+    retailShop.supplyChains[supplyChainId].push(supplierId);
+    _used = true;
+}
+
+
+    
+    function getRetailShop(address retailShopAddress) external view returns (
+        string  name,
+        string  coordinates,
+        int id,
+        string  logoURL,
+        string  description,
+        address shopAddress,
+        uint[]  supplierIds
+    ) {
+        RetailShop  retailShop = retailShops[retailShopAddress];
+        return (
+            retailShop.name,
+            retailShop.coordinates,
+            retailShop.id,
+            retailShop.logoURL,
+            retailShop.description,
+            retailShop.retailShopAddress,
+            retailShop.supplierIds
+        );
+    }
+}
