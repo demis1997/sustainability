@@ -6,7 +6,7 @@ module main_addr::supplierRegistry {
   use std::signer;
   use aptos_std::table::{Self, Table};
   use aptos_framework::account;
-
+  
   const E_NOT_INITIALIZED: u64 = 1;
   const ETASK_DOESNT_EXIST: u64 = 2;
   const ETASK_IS_COMPLETED: u64 = 3;

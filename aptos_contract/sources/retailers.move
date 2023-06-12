@@ -6,7 +6,7 @@ module main_addr::retailerRegistry {
   use std::signer;
   use aptos_std::table::{Self, Table};
   use aptos_framework::account;
-
+  use "suppliers.move"
   const E_NOT_INITIALIZED: u64 = 1;
   const ETASK_DOESNT_EXIST: u64 = 2;
   const ETASK_IS_COMPLETED: u64 = 3;
@@ -18,6 +18,7 @@ module main_addr::retailerRegistry {
     logoURL: String,
     description: String,
     retailShopAddress: String,
+    supplyChains: Table<String, supplierRegistry::Supplier>,
   }
 
   struct RetailerRegistry {
@@ -88,4 +89,39 @@ module main_addr::retailerRegistry {
       |retail_shop| retail_shop.name == name,
     )
   }
+
+  public entry fun add_supplier_to_supply_chain(
+  account: &signer,
+  retailShopAddress: String,
+  supplier: supplierRegistry::Supplier,
+) acquires RetailerRegistry {
+  let retailerRegistry = borrow_global_mut<RetailerRegistry>(signer::address_of(account));
+  let retailShop = table::get_mut(&mut retailerRegistry.retailShops, retailShopAddress);
+  
+  if let Some(retailShop) = retailShop {
+    table::upsert(
+      &mut retailShop.supplyChains,
+      supplier.supplierAddress.to_string(),
+      supplier,
+    );
+  }
+}
+pub fun get_supply_chain(
+  account: &signer,
+  retailShopAddress: String,
+  supplyChainName: String,
+): (RetailShop, &[supplierRegistry::Supplier]) acquires RetailerRegistry {
+  let retailerRegistry = borrow_global::<RetailerRegistry>(signer::address_of(account));
+  let retailShop = table::get(&retailerRegistry.retailShops, retailShopAddress);
+
+  if let Some(retailShop) = retailShop {
+    let supplyChain = table::get(&retailShop.supplyChains, supplyChainName);
+    if let Some(supplyChain) = supplyChain {
+      return (retailShop, table::values(&supplyChain));
+    }
+  }
+
+  abort!(ETASK_DOESNT_EXIST);
+}
+
 }
