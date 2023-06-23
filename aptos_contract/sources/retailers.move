@@ -42,9 +42,17 @@ module my_addrx::RetailShopTools {
 		return newSupplier
 	}
 
-	public fun add_to_supply_chain():{
-		
-	}
+public fun add_to_supply_chain(supplier_addresses: vector<address>, retailer: &mut Retailer) {
+    let len = Vector::length(&supplier_addresses);
+
+    let i = 0;
+    while (i < len) {
+        let supplier_addr = Vector::borrow(&supplier_addresses, i);
+
+        Vector::push_back(&mut retailer.linkedlists.list_of_supplyChains, *supplier_addr);
+        i = i + 1;
+    };
+}
 	
 	#[test]
  	fun test_create_Test_Retailer(){
