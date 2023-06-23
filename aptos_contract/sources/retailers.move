@@ -4,13 +4,13 @@ module my_addrx::RetailShopTools {
 	use std::string::{String,utf8};
 
 	struct SupplyChain has key,drop, store,drop,copy  {
-		list_of_users: vector<Supplier>   
+		list_of_supplyChains: vector<Supplier>   
 	}
 	struct RetailerShopRegistry has key,drop, store,drop,copy  {
-		list_of_users: vector<Retailer>    
+		list_of_retailers: vector<Retailer>    
 	}
     struct SupplierRegistry has key,drop, store,drop,copy  {
-		list_of_users: vector<Supplier>    
+		list_of_suppliers: vector<Supplier>    
 	}
 
 	struct Retailer has key,drop, store,drop,copy  {
@@ -33,25 +33,33 @@ module my_addrx::RetailShopTools {
 	}
 
 
-        //creating a user by adding the user to the existing list and returning the user
-	public fun create_user(newUser: User,users: &mut Users): User{
-		vector::push_back(&mut users.list_of_users,newUser);
-		return newUser
+	public fun create_retailer(newRetailer: Retailer,retailers: &mut RetailerShopRegistry): Retailer{
+		vector::push_back(&mut retailers.list_of_retailers,newRetailer);
+		return newRetailer
 	}
+		public fun create_Supplier(newSupplier: Supplier,suppliers: &mut SupplierRegistry): Supplier{
+		vector::push_back(&mut suppliers.list_of_suppliers,newSupplier);
+		return newSupplier
+	}
+
 	
 	#[test]
-	fun test_create_friend(){
-		let user1 = User {
+ 	fun test_create_Test_Retailer(){
+		let retailer1 = Retailer {
 			name:utf8(b"Tony"),
-			age:50,
+			coordinates:23,
+			id: 2,
+			description: (b"hello world description"),
+			supplierAddress:0x10,
+			logoURL:utf8(b"link")
 		};
 		
-        let users = Users{
-			list_of_users: vector::empty<User>()
+        let retailers = Retailers{
+			list_of_Retailers: vector::empty<Retailer>()
 		};
 
-		let createdUser = create_user(user1,&mut users);
-        debug::print(&users);
-        assert!(createdUser.name == utf8(b"Tony"),0);
+		let createdRetailer = create_user(retailer1,&mut retailers);
+        debug::print(&retailers);
+        assert!(createdRetailer.name == utf8(b"Tony"),0);
 	}
 }
