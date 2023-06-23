@@ -42,6 +42,9 @@ module my_addrx::RetailShopTools {
 		return newSupplier
 	}
 
+	public fun add_to_supply_chain():{
+		
+	}
 	
 	#[test]
  	fun test_create_Test_Retailer(){
@@ -51,6 +54,7 @@ module my_addrx::RetailShopTools {
 			id: 2,
 			description: (b"hello world description"),
 			supplierAddress:0x10,
+			linkedlists:[0],
 			logoURL:utf8(b"link")
 		};
 		
