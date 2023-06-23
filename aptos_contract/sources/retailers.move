@@ -1,127 +1,101 @@
-module main_addr::retailerRegistry {
+address 0x2 {
+module RetailShopRegistry {
+    use 0x1::SupplierRegistry::Supplier;
+    use Std::Vector;
 
-  use aptos_framework::event;
-  use std::string::String;
-  use aptos_std::table::Table;
-  use std::signer;
-  use aptos_std::table::{Self, Table};
-  use aptos_framework::account;
-  use "suppliers.move"
-  const E_NOT_INITIALIZED: u64 = 1;
-  const ETASK_DOESNT_EXIST: u64 = 2;
-  const ETASK_IS_COMPLETED: u64 = 3;
-
-  struct RetailShop {
-    name: String,
-    coordinates: String,
-    id: u64,
-    logoURL: String,
-    description: String,
-    retailShopAddress: String,
-    supplyChains: Table<String, supplierRegistry::Supplier>,
-  }
-
-  struct RetailerRegistry {
-    retailShops: Table<String, RetailShop>,
-    set_retail_shop_event: event::EventHandle<RetailShop>,
-  }
-
-  public entry fun create_registry(account: &signer) {
-    let Retailer_registry = RetailerRegistry {
-      retailShops: table::new(),
-      set_retail_shop_event: account::new_event_handle<RetailShop>(account),
-    };
-    move_to(account, Retailer_registry);
-  }
-
-  public entry fun add_retail_shop(
-    account: &signer,
-    name: String,
-    coordinates: String,
-    id: u64,
-    logoURL: String,
-    description: String,
-    retailShopAddress: String,
-  ) acquires RetailerRegistry {
-    let Retailer_registry = borrow_global_mut<RetailerRegistry>(signer::address_of(account));
-
-    let retail_shop = RetailShop {
-      name,
-      coordinates,
-      id,
-      logoURL,
-      description,
-      retailShopAddress,
-    };
-
-    table::upsert(
-      &mut Retailer_registry.retailShops,
-      retail_shop.retailShopAddress.clone(),
-      retail_shop,
-    );
-
-    event::emit_event<RetailShop>(
-      &mut Retailer_registry.set_retail_shop_event,
-      retail_shop,
-    );
-  }
-
-  public fun get_retail_shop_by_address(
-    account: &signer,
-    retailShopAddress: String,
-  ): &RetailShop acquires RetailerRegistry {
-    let Retailer_registry = borrow_global::<RetailerRegistry>(signer::address_of(account));
-
-    option::unwrap_or_else(
-      table::find(&Retailer_registry.retailShops, retailShopAddress),
-      abort!(ETASK_DOESNT_EXIST),
-    )
-  }
-
-  public fun get_retail_shop_by_name(
-    account: &signer,
-    name: String,
-  ): &[RetailShop] acquires RetailerRegistry {
-    let Retailer_registry = borrow_global::<RetailerRegistry>(signer::address_of(account));
-
-    table::filter_values(
-      &Retailer_registry.retailShops,
-      |retail_shop| retail_shop.name == name,
-    )
-  }
-
-  public entry fun add_supplier_to_supply_chain(
-  account: &signer,
-  retailShopAddress: String,
-  supplier: supplierRegistry::Supplier,
-) acquires RetailerRegistry {
-  let retailerRegistry = borrow_global_mut<RetailerRegistry>(signer::address_of(account));
-  let retailShop = table::get_mut(&mut retailerRegistry.retailShops, retailShopAddress);
-  
-  if let Some(retailShop) = retailShop {
-    table::upsert(
-      &mut retailShop.supplyChains,
-      supplier.supplierAddress.to_string(),
-      supplier,
-    );
-  }
-}
-pub fun get_supply_chain(
-  account: &signer,
-  retailShopAddress: String,
-  supplyChainName: String,
-): (RetailShop, &[supplierRegistry::Supplier]) acquires RetailerRegistry {
-  let retailerRegistry = borrow_global::<RetailerRegistry>(signer::address_of(account));
-  let retailShop = table::get(&retailerRegistry.retailShops, retailShopAddress);
-
-  if let Some(retailShop) = retailShop {
-    let supplyChain = table::get(&retailShop.supplyChains, supplyChainName);
-    if let Some(supplyChain) = supplyChain {
-      return (retailShop, table::values(&supplyChain));
+    struct SupplyChain has key {
+        id: u64,
+        suppliers: vector<Supplier>,
     }
-  }
 
-  abort!(ETASK_DOESNT_EXIST);
+    struct RetailShop has key {
+        name: vector<u8>,
+        coordinates: vector<u8>,
+        id: u64,
+        logoURL: vector<u8>,
+        description: vector<u8>,
+        retail_shop_address: address,
+        supply_chains: vector<SupplyChain>,
+    }
+
+    struct RetailShopRegistry has key {
+        retail_shops: vector<RetailShop>,
+    }
+
+    public fun create_registry(): RetailShopRegistry {
+        RetailShopRegistry { retail_shops: Vector::empty() }
+    }
+
+    public fun add_retail_shop(registry: &mut RetailShopRegistry, shop: RetailShop) {
+        Vector::push_back(&mut registry.retail_shops, shop);
+    }
+
+    public fun get_retail_shop_by_name(registry: &RetailShopRegistry, name: vector<u8>): Option<RetailShop> {
+        let shops = &registry.retail_shops;
+        let len = Vector::length(shops);
+
+        let i = 0;
+        while (i < len) {
+            let s = *Vector::borrow(shops, i);
+            if (s.name == name) return Option::some(s);
+            i = i + 1;
+        };
+
+        Option::none()
+    }
+
+    public fun get_retail_shop_by_address(registry: &RetailShopRegistry, retail_shop_address: address): Option<RetailShop> {
+        let shops = &registry.retail_shops;
+        let len = Vector::length(shops);
+
+        let i = 0;
+        while (i < len) {
+            let s = *Vector::borrow(shops, i);
+            if (s.retail_shop_address == retail_shop_address) return Option::some(s);
+            i = i + 1;
+        };
+
+        Option::none()
+    }
+
+    public fun add_supplier_to_supply_chain(registry: &mut RetailShopRegistry, shop_id: u64, supply_chain_id: u64, supplier: Supplier) {
+        let shops = &mut registry.retail_shops;
+        let len = Vector::length(shops);
+
+        let i = 0;
+        while (i < len) {
+            let shop = Vector::borrow_mut(shops, i);
+            if (shop.id == shop_id) {
+                let chains = &mut shop.supply_chains;
+                let chains_len = Vector::length(chains);
+
+              let j = 0;
+while (j < chains_len) {
+    let chain = Vector::borrow_mut(chains, j);
+    if (chain.id == supply_chain_id) {
+        Vector::push_back(&mut chain.suppliers, supplier);
+        return;
+    }
+    j = j + 1;
+};
+
+            }
+            i = i + 1;
+        };
+    }
+
+    public fun get_supply_chains(registry: &RetailShopRegistry, shop_id: u64): vector<SupplyChain> {
+        let shops = &registry.retail_shops;
+        let len = Vector::length(shops);
+
+        let i = 0;
+        while (i < len) {
+            let shop = *Vector::borrow(shops, i);
+            if (shop.id == shop_id) return shop.supply_chains;
+            i = i + 1;
+        };
+
+        Vector::empty()
+    }
 }
-
 }

@@ -1,91 +1,54 @@
-module main_addr::supplierRegistry {
+address 0x1 {
+module SupplierRegistry {
+    use Std::Vector;
 
-  use aptos_framework::event;
-  use std::string::String;
-  use aptos_std::table::Table;
-  use std::signer;
-  use aptos_std::table::{Self, Table};
-  use aptos_framework::account;
-  
-  const E_NOT_INITIALIZED: u64 = 1;
-  const ETASK_DOESNT_EXIST: u64 = 2;
-  const ETASK_IS_COMPLETED: u64 = 3;
+    struct Supplier has key {
+        name: vector<u8>,
+        coordinates: vector<u8>,
+        id: u64,
+        logoURL: vector<u8>,
+        description: vector<u8>,
+        supplier_address: address,
+    }
 
-  struct Supplier {
-    name: String,
-    coordinates: String,
-    id: u64,
-    logoURL: String,
-    description: String,
-    supplierAddress: address,
-  }
+    struct SupplierRegistry has key {
+        suppliers: vector<Supplier>,
+    }
 
-  struct SupplierRegistry {
-    suppliers: Table<String, Supplier>,
-    set_supplier_event: event::EventHandle<Supplier>,
-  }
+    public fun create_registry(): SupplierRegistry {
+        SupplierRegistry { suppliers: Vector::empty() }
+    }
 
-  public entry fun create_registry(account: &signer) {
-    let supplier_registry = SupplierRegistry {
-      suppliers: table::new(),
-      set_supplier_event: account::new_event_handle<Supplier>(account),
-    };
-    move_to(account, supplier_registry);
-  }
+    public fun add_supplier(registry: &mut SupplierRegistry, supplier: Supplier) {
+        Vector::push_back(&mut registry.suppliers, supplier);
+    }
 
-  public entry fun add_supplier(
-    account: &signer,
-    name: String,
-    coordinates: String,
-    id: u64,
-    logoURL: String,
-    description: String,
-    supplierAddress: address,
-  ) acquires SupplierRegistry {
-    let supplier_registry = borrow_global_mut<SupplierRegistry>(signer::address_of(account));
+    public fun get_supplier_by_name(registry: &SupplierRegistry, name: vector<u8>): Option<Supplier> {
+        let suppliers = &registry.suppliers;
+        let len = Vector::length(suppliers);
 
-    let supplier = Supplier {
-      name,
-      coordinates,
-      id,
-      logoURL,
-      description,
-      supplierAddress,
-    };
+        let i = 0;
+        while (i < len) {
+            let s = *Vector::borrow(suppliers, i);
+            if (s.name == name) return Option::some(s);
+            i = i + 1;
+        };
 
-    table::upsert(
-      &mut supplier_registry.suppliers,
-      supplier.supplierAddress.to_string(),
-      supplier,
-    );
+        Option::none()
+    }
 
-    event::emit_event<Supplier>(
-      &mut supplier_registry.set_supplier_event,
-      supplier,
-    );
-  }
+    public fun get_supplier_by_address(registry: &SupplierRegistry, supplier_address: address): Option<Supplier> {
+        let suppliers = &registry.suppliers;
+        let len = Vector::length(suppliers);
 
-  public fun get_supplier_by_address(
-    account: &signer,
-    supplierAddress: address,
-  ): &Supplier acquires SupplierRegistry {
-    let supplier_registry = borrow_global::<SupplierRegistry>(signer::address_of(account));
+        let i = 0;
+        while (i < len) {
+            let s = *Vector::borrow(suppliers, i);
+            if (s.supplier_address == supplier_address) return Option::some(s);
+            i = i + 1;
+        };
 
-    option::unwrap_or_else(
-      table::find(&supplier_registry.suppliers, supplierAddress.to_string()),
-      abort!(ETASK_DOESNT_EXIST),
-    )
-  }
-
-  public fun get_supplier_by_name(
-    account: &signer,
-    name: String,
-  ): &[Supplier] acquires SupplierRegistry {
-    let supplier_registry = borrow_global::<SupplierRegistry>(signer::address_of(account));
-
-    table::filter_values(
-      &supplier_registry.suppliers,
-      |supplier| supplier.name == name,
-    )
-  }
+        Option::none()
+    }
+}
 }
