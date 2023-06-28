@@ -1,8 +1,8 @@
-module my_addrx::RetailerSuppliers {
+module publisher::RetailerSuppliers {
 
 use std::signer;
+//use std::simple_map::{Self, SimpleMap};
 use std::vector;
-use std::simple_map::{Self, SimpleMap};
 
 const E_NOT_RETAILER: u64 = 0;
 const E_RETAILER_NOT_REGISTERED: u64 = 1;
@@ -10,45 +10,45 @@ const E_RETAILER_ALREADY_REGISTERED: u64 = 2;
 const E_SUPPLIER_ALREADY_ADDED: u64 = 3;
 const E_SUPPLIER_NOT_FOUND: u64 = 4;
 
-struct Supplier {
-    name: String,
+struct Supplier has copy, drop, store {
+    name: vector<u8>,
     id: u64,
-    description: String,
+    description: vector<u8>,
     address: address
 }
 
-struct Retailer {
-    name: String,
+struct Retailer has copy, drop, store {
+    name: vector<u8>,
     id: u64,
-    description: String,
+    description: vector<u8>,
     address: address,
     suppliers: vector<Supplier>
 }
 
 public fun assert_is_retailer(acc: &signer, retailers: &mut vector<Retailer>) {
     let addr = signer::address_of(acc);
-    let len = Vector::length(retailers);
+    let len = vector::length(retailers);
     let i = 0;
 
     while (i < len) {
-        let retailer = Vector::borrow(retailers, i);
+        let retailer = vector::borrow(retailers, i);
         if (retailer.address == addr) return;
         i = i + 1;
     };
     
-    abort E_NOT_RETAILER;
+    abort E_NOT_RETAILER
 }
 
-public fun register_retailer(acc: &signer, retailers: &mut vector<Retailer>, name: String, id: u64, description: String) {
+public fun register_retailer(acc: &signer, retailers: &mut vector<Retailer>, name: vector<u8>, id: u64, description: vector<u8>) {
     let addr = signer::address_of(acc);
-    let len = Vector::length(retailers);
+    let len = vector::length(retailers);
     let i = 0;
 
     while (i < len) {
-        let retailer = Vector::borrow(retailers, i);
+        let retailer = vector::borrow(retailers, i);
         if (retailer.address == addr) {
-            abort E_RETAILER_ALREADY_REGISTERED;
-        }
+            abort E_RETAILER_ALREADY_REGISTERED
+        };
         i = i + 1;
     };
 
@@ -57,54 +57,54 @@ public fun register_retailer(acc: &signer, retailers: &mut vector<Retailer>, nam
         id: id,
         description: description,
         address: addr,
-        suppliers: Vector::empty()
+        suppliers: vector::empty()
     };
 
-    Vector::push_back(retailers, new_retailer);
+    vector::push_back(retailers, new_retailer);
 }
 
 public fun add_supplier(acc: &signer, retailers: &mut vector<Retailer>, supplier: Supplier) {
     let addr = signer::address_of(acc);
-    let len = Vector::length(retailers);
+    let len = vector::length(retailers);
     let i = 0;
 
     while (i < len) {
-        let retailer = Vector::borrow_mut(retailers, i);
+        let retailer = vector::borrow_mut(retailers, i);
         if (retailer.address == addr) {
-            let suppliers_len = Vector::length(&retailer.suppliers);
+            let suppliers_len = vector::length(&retailer.suppliers);
             let j = 0;
             
             while (j < suppliers_len) {
-                let existing_supplier = Vector::borrow(&retailer.suppliers, j);
+                let existing_supplier = vector::borrow(&retailer.suppliers, j);
                 if (existing_supplier.id == supplier.id) {
-                    abort E_SUPPLIER_ALREADY_ADDED;
-                }
+                    abort E_SUPPLIER_ALREADY_ADDED
+                };
                 j = j + 1;
-            }
+            };
 
-            Vector::push_back(&mut retailer.suppliers, supplier);
-            return;
-        }
+            vector::push_back(&mut retailer.suppliers, supplier);
+            return
+        };
         i = i + 1;
     };
     
-    abort E_RETAILER_NOT_REGISTERED;
+    abort E_RETAILER_NOT_REGISTERED
 }
 
 public fun get_suppliers(acc: &signer, retailers: &mut vector<Retailer>): vector<Supplier> {
     let addr = signer::address_of(acc);
-    let len = Vector::length(retailers);
+    let len = vector::length(retailers);
     let i = 0;
 
     while (i < len) {
-        let retailer = Vector::borrow(retailers, i);
+        let retailer = vector::borrow(retailers, i);
         if (retailer.address == addr) {
-            return retailer.suppliers;
-        }
+            return retailer.suppliers
+        };
         i = i + 1;
     };
     
-    abort E_RETAILER_NOT_REGISTERED;
+    vector<Supplier>[]
 }
 
 }
