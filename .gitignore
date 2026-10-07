@@ -1,1 +1,8 @@
 node_modules
+
+# Local environments and generated artifacts
+node_modules/
+.env
+.env.*
+!.env.example
+.next/
